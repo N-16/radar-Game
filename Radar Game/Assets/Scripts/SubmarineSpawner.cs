@@ -18,7 +18,7 @@ public class SubmarineSpawner : MonoBehaviour{
 
     IEnumerator SpawnRoutine(){
         while(true){
-            AssignSubmarinePath(Instantiate(prefab).GetComponent<Submarine>());
+            AssignSubmarinePath(Instantiate(prefab, this.transform).GetComponent<Submarine>());
             yield return new WaitForSeconds(Random.Range(minSpawnTime, maxSpawnTime));
 
         }

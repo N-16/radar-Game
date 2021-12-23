@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 public class Submarine : MonoBehaviour{
     Vector3 moveFrom;
     Vector3 moveTo;
@@ -9,6 +10,9 @@ public class Submarine : MonoBehaviour{
     bool pathAssigned;
     public bool destroyed{private set; get;}
     [SerializeField] AudioSource explosionSfx;
+
+    public static event Action OnSubKilled;
+    public static event Action OnSubCrossed;
 
     void OnDisable(){
         pathAssigned = false;
@@ -19,6 +23,7 @@ public class Submarine : MonoBehaviour{
             if (col.gameObject == gameObject){
                 explosionSfx.Play();
                 destroyed = true;
+                OnSubKilled?.Invoke();
                 StartCoroutine(AfterMissleHitRoutine());
             }
         };
@@ -36,8 +41,8 @@ public class Submarine : MonoBehaviour{
             transform.position += (moveTo - moveFrom).normalized *  shipSpeed * Time.deltaTime; 
             if (Vector3.Distance(transform.position , moveTo) < 0.2f){
                 pathAssigned = false;
+                OnSubCrossed?.Invoke();
                 this.gameObject.SetActive(false);
-                
             }
         }
     }
