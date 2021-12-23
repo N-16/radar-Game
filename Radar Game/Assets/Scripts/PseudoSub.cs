@@ -5,22 +5,29 @@ using UnityEngine;
 public class PseudoSub : MonoBehaviour{
 
     float timeAfterSoundWillBePlayed;
-    AudioSource source;
+    [SerializeField] AudioSource normalSource, highCutSource;
     void Awake(){
-        source = GetComponent<AudioSource>();
-    }
-    public void PlaySound(Vector3 psuedoSubPos, float timeAfterSoundWillBePlayed, float timeAfterSoundShouldStop){
-        transform.position = psuedoSubPos;
-        StartCoroutine(PlaySoundRoutine(timeAfterSoundWillBePlayed));
-        StartCoroutine(StopSoundRoutine(timeAfterSoundShouldStop));
 
     }
-    IEnumerator PlaySoundRoutine(float time){
+    public void PlaySound(Vector3 psuedoSubPos, float normalSoundVolume, float highCutSoundVolume){
+        transform.position = psuedoSubPos;
+        /*StartCoroutine(PlaySoundRoutine(timeAfterSoundWillBePlayed, normalSoundVolume, highCutSoundVolume));
+        StartCoroutine(StopSoundRoutine(timeAfterSoundShouldStop));*/
+        normalSource.volume = normalSoundVolume;
+        highCutSource.volume = highCutSoundVolume;
+        normalSource.Play();
+        highCutSource.Play();
+
+    }
+    /*IEnumerator PlaySoundRoutine(float time, float normalSoundVolume, float highCutSoundVolume){
         yield return new WaitForSeconds(time);
-        source.Play();
+        normalSource.volume = normalSoundVolume;
+        highCutSource.volume = highCutSoundVolume;
+        normalSource.Play();
+        highCutSource.Play();
     }
     IEnumerator StopSoundRoutine(float time){
         yield return new WaitForSeconds(time);
-        source.Stop();
-    }    
+        normalSource.Stop();
+    }*/
 }

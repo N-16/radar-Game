@@ -6,6 +6,7 @@ public class PseudoSubPool : MonoBehaviour{
     [SerializeField] int poolSize;
     [SerializeField] GameObject prefab;
     [HideInInspector]public List<GameObject> pool = new List<GameObject>();
+    [SerializeField] Transform psuedoSubParent;
 
     private void Awake(){
         AddObject(poolSize);
@@ -19,7 +20,7 @@ public class PseudoSubPool : MonoBehaviour{
             }
         }
         GameObject toAdd = Instantiate(prefab);
-        toAdd.transform.parent = transform;
+        toAdd.transform.parent = psuedoSubParent;
         toAdd.transform.localPosition = Vector3.zero;
         //toAdd.SetActive(false);
         pool.Add(toAdd);   
@@ -27,7 +28,7 @@ public class PseudoSubPool : MonoBehaviour{
     }
     public void AddObject(int count){
         for (int i = 0; i < count; i++){
-            GameObject toAdd = Instantiate(prefab, transform);
+            GameObject toAdd = Instantiate(prefab, psuedoSubParent);
             toAdd.transform.localPosition = Vector3.zero;
             //toAdd.SetActive(false);
             pool.Add(toAdd);

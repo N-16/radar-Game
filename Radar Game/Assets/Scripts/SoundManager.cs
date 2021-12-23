@@ -27,6 +27,7 @@ public class SoundManager : MonoBehaviour{
             sound.source = gameObject.AddComponent<AudioSource>();
             sound.source.clip = sound.clip;
             sound.source.loop = sound.looping;
+            sound.source.volume = sound.volume;
             sound.soundType = soundType.soundFx;
         }
 
@@ -35,6 +36,7 @@ public class SoundManager : MonoBehaviour{
             sound.source = gameObject.AddComponent<AudioSource>();
             sound.source.clip = sound.clip;
             sound.source.loop = sound.looping;
+            sound.source.volume = sound.volume;
             sound.soundType = soundType.ambience;
         }
 
@@ -43,6 +45,7 @@ public class SoundManager : MonoBehaviour{
             sound.source = gameObject.AddComponent<AudioSource>();
             sound.source.clip = sound.clip;
             sound.source.loop = sound.looping;
+            sound.source.volume = sound.volume;
             sound.soundType = soundType.soundTrack;
         }       
     }
@@ -125,6 +128,21 @@ public class SoundManager : MonoBehaviour{
     public void Crossfade(string from, soundType fromSoundType ,string to, soundType toSoundType, float time, Action toDoAfterCrossfade = null){
         SmoothStart(toSoundType, to, time, toDoAfterCrossfade);
         SmoothStop(fromSoundType, from, time);
+    }
+
+    public void PlaySoundAtCustomVolume(soundType soundType, string soundName, float volume){
+        var soundArray = soundType == soundType.soundFx ? soundFx : soundType == soundType.ambience ? ambience : soundTrack;
+        foreach (Sound sound in soundArray)
+        {
+            if (soundName == sound.soundName){
+                sound.source.volume = volume;
+                sound.source.Play();
+                StartCoroutine(DoAfterSoundPlayedRoutine(sound, () => sound.source.volume = sound.volume));
+                return;
+            }
+            
+        }
+        Debug.LogError("sound not found");
     }
     IEnumerator DoAfterSoundPlayedRoutine(Sound sound, Action toDo){
         while(sound.source.isPlaying){
