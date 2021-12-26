@@ -61,5 +61,5 @@ public class GameScene{
 }
 
 public enum SceneType{
-    GameScene, UIScene, GlobalScene
+    GameScene, UIScene, GlobalScene, AdjustSensitivity
 }

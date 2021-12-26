@@ -15,4 +15,7 @@ public class MainMenu : MonoBehaviour{
     public void OnPlayButton(){
         GameManager.Instance.StartGame();
     }
+    public void OnAdjustSensitivityButton(){
+        UIManager.Instance.ShowScreen("Adjust Sensitivity");
+    }
 }

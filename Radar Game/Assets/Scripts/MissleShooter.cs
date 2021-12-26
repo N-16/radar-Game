@@ -13,7 +13,7 @@ public class MissleShooter : MonoBehaviour{
     }
 
     void Update(){
-        if (Input.GetKeyDown(KeyCode.Mouse0) && canShoot){
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canShoot && GameManager.Instance.currentState != GameState.Pause){
             StartCoroutine(MissleShootRoutine());
         }
     }

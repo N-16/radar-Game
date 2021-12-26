@@ -15,20 +15,48 @@ public class GameManager : MonoBehaviour{
     }
     void Awake(){
         _instance = this;
+        currentState = GameState.Menu;
+    }
+    void Update(){
+        if (Input.GetKeyDown(pauseKey) && currentState == GameState.InGame){
+            currentState = GameState.Pause;
+            Time.timeScale = 0f;
+            UAP_AccessibilityManager.Say("Game Paused");
+            UIManager.Instance.ShowScreen("Pause");
+            return;
+        }
+        else if (Input.GetKeyDown(pauseKey) && currentState == GameState.Pause){
+            Debug.Log("Should be unpaused");
+            Time.timeScale = 1f;
+            currentState = GameState.InGame;
+            UIManager.Instance.RemoveAllScreen();
+        }
+        Debug.Log(Time.timeScale);
     }
 
     public GameState currentState {private set; get;}
+    [SerializeField] KeyCode pauseKey;
 
     public void StartGame(){
         UIManager.Instance.RemoveAllScreen();
         SceneLoader.Instance.AddScene(SceneType.GameScene, () => {
             UAP_AccessibilityManager.Say("Start");
+            currentState = GameState.InGame;
         });
     }
     public void EndGame(){
         SceneLoader.Instance.RemoveScene(SceneType.GameScene);
         UIManager.Instance.ShowScreen("MainMenu");
+        currentState = GameState.Menu;
     }
+    public void UnPause(){
+        if (currentState == GameState.Pause){
+            Time.timeScale = 1f;
+            currentState = GameState.InGame;
+            UIManager.Instance.RemoveAllScreen();
+        }
+    }
+    
 }
 
 public enum GameState{
