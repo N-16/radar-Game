@@ -153,7 +153,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &349705107
 MonoBehaviour:
@@ -189,6 +189,94 @@ MonoBehaviour:
     sceneType: 0
   - sceneName: Sensitivity Adjuster
     sceneType: 3
+--- !u!1 &736201696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 736201699}
+  - component: {fileID: 736201697}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &736201697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736201696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb56284eb4c09f44d8dc3dbc0477832d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFx:
+  - volume: 1
+    clip: {fileID: 8300000, guid: e0bc83d9391a6e64680bd4f5da3d4897, type: 3}
+    looping: 0
+    soundName: RadarWave
+    soundType: 0
+    source: {fileID: 0}
+  - volume: 1
+    clip: {fileID: 8300000, guid: 45821b2d71de6554fb17562507ea52bd, type: 3}
+    looping: 0
+    soundName: MissleFire
+    soundType: 0
+    source: {fileID: 0}
+  - volume: 0.5
+    clip: {fileID: 8300000, guid: b407ce56ae00ecc4ba6dec8b48f0f858, type: 3}
+    looping: 0
+    soundName: kill confirmed
+    soundType: 0
+    source: {fileID: 0}
+  - volume: 0.5
+    clip: {fileID: 8300000, guid: 920f7b47beab641458bdf224b7663a34, type: 3}
+    looping: 0
+    soundName: 1 sub crossed
+    soundType: 0
+    source: {fileID: 0}
+  - volume: 0.5
+    clip: {fileID: 8300000, guid: bf3bf9967bebd7b48ba09e3f45d641ee, type: 3}
+    looping: 0
+    soundName: 2 sub crossed
+    soundType: 0
+    source: {fileID: 0}
+  - volume: 1
+    clip: {fileID: 8300000, guid: a94dc21f3b021364186ee2d04d902f0f, type: 3}
+    looping: 0
+    soundName: announce
+    soundType: 0
+    source: {fileID: 0}
+  ambience:
+  - volume: 0.275
+    clip: {fileID: 8300000, guid: ea6863e43804c274aa8944e5f14769ea, type: 3}
+    looping: 1
+    soundName: underwater
+    soundType: 0
+    source: {fileID: 0}
+  soundTrack: []
+--- !u!4 &736201699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736201696}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1580183841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -232,9 +320,13 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0.14300537
       objectReference: {fileID: 0}
+    - target: {fileID: 22474968, guid: 89f4a0ae7ea3fa84ea56c91291d7bd87, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4973883477652662, guid: 89f4a0ae7ea3fa84ea56c91291d7bd87, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4973883477652662, guid: 89f4a0ae7ea3fa84ea56c91291d7bd87, type: 3}
       propertyPath: m_LocalPosition.x

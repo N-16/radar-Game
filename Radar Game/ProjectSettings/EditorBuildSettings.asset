@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ui.unity
     guid: 401613170e2697346ac426009faf4cb9
+  - enabled: 1
+    path: Assets/Scenes/Sensitivity Adjuster.unity
+    guid: a2c50d7f493f5834e8d8f77222d46768
   m_configObjects: {}

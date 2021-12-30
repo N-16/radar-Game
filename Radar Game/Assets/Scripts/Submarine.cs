@@ -15,18 +15,31 @@ public class Submarine : MonoBehaviour{
     public static event Action OnSubCrossed;
 
     void OnDisable(){
+        GetComponent<Collider>().enabled = true;
         pathAssigned = false;
         destroyed = false;
     }
     void Start(){
-        Missle.MissleHitting += (Collider col) => {
-            if (col.gameObject == gameObject){
+        Missle.MissleHitting += CheckOnMissleHit;
+    }
+    void CheckOnMissleHit(Collider col){
+        Debug.Log(gameObject);
+        Debug.Log(col);
+        if (col.gameObject == gameObject){
                 explosionSfx.Play();
                 destroyed = true;
                 OnSubKilled?.Invoke();
+                GetComponent<Collider>().enabled = false;
                 StartCoroutine(AfterMissleHitRoutine());
             }
-        };
+    }
+
+    public void MissleHit(){
+        explosionSfx.Play();
+        destroyed = true;
+        OnSubKilled?.Invoke();
+        GetComponent<Collider>().enabled = false;
+        StartCoroutine(AfterMissleHitRoutine());
     }
 
     public void AssignPath(Vector3 from, Vector3 to, float speed){
@@ -51,6 +64,6 @@ public class Submarine : MonoBehaviour{
         while(explosionSfx.isPlaying){
             yield return null;
         }
-        this.gameObject.SetActive(false);
+        SoundManager.Instance.PlaySound(soundType.soundFx, "kill confirmed", () => this.gameObject.SetActive(false));
     }
 }

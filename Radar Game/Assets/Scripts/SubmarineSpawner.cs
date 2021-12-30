@@ -9,7 +9,8 @@ public class SubmarineSpawner : MonoBehaviour{
     [SerializeField] float maxD;
     [SerializeField] GameObject prefab;
     [SerializeField] float minSpawnTime;
-    [SerializeField] float maxSpawnTime;
+    [SerializeField] public float maxSpawnTime;
+    public int subSpawned = 0;
     [SerializeField] float minSpeed, maxSpeed;
 
     void Start(){
@@ -19,6 +20,13 @@ public class SubmarineSpawner : MonoBehaviour{
     IEnumerator SpawnRoutine(){
         while(true){
             AssignSubmarinePath(Instantiate(prefab, this.transform).GetComponent<Submarine>());
+            subSpawned++;
+            if (subSpawned % 4 == 0){
+                maxSpawnTime = Mathf.Max(minSpawnTime, maxSpawnTime - 3f);
+                if (maxSpawnTime == minSpawnTime){
+                    minSpawnTime = Mathf.Max(5f, minSpawnTime - 2f);
+                }
+            }
             yield return new WaitForSeconds(Random.Range(minSpawnTime, maxSpawnTime));
 
         }

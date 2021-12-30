@@ -18,10 +18,11 @@ public class FeelSensitivity : MonoBehaviour{
         upperThresh = aim.yaw + 89f;
         soundPitch = 2;
         lastThreshold = Threshold.Upper;
-        UAP_AccessibilityManager.Say("Move the mouse horizontally to feel sensitivity. A sound will be played for rotation of every 90 degrees. Press escape to go back and adjust sensitivity");
+        UAP_AccessibilityManager.Say("Move the mouse horizontally to feel sensitivity. A sound will be played for rotation of every 90 degrees. Press escape to go back and adjust sensitivity", true);
     }
     void Update(){
         if (Input.GetKeyDown(KeyCode.Escape)){
+            UAP_AccessibilityManager.StopSpeaking();
             UIManager.Instance.ShowScreen("Adjust Sensitivity");
             SceneLoader.Instance.RemoveScene(SceneType.AdjustSensitivity);
         }

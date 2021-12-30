@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour{
         currentState = GameState.Menu;
     }
     void Update(){
-        if (Input.GetKeyDown(pauseKey) && currentState == GameState.InGame){
+        /*if (Input.GetKeyDown(pauseKey) && currentState == GameState.InGame){
             currentState = GameState.Pause;
             Time.timeScale = 0f;
             UAP_AccessibilityManager.Say("Game Paused");
@@ -30,8 +30,7 @@ public class GameManager : MonoBehaviour{
             Time.timeScale = 1f;
             currentState = GameState.InGame;
             UIManager.Instance.RemoveAllScreen();
-        }
-        Debug.Log(Time.timeScale);
+        }*/
     }
 
     public GameState currentState {private set; get;}
@@ -54,6 +53,15 @@ public class GameManager : MonoBehaviour{
             Time.timeScale = 1f;
             currentState = GameState.InGame;
             UIManager.Instance.RemoveAllScreen();
+        }
+    }
+    public void PauseGame(){
+        if (currentState == GameState.InGame){
+            currentState = GameState.Pause;
+            Time.timeScale = 0f;
+            UAP_AccessibilityManager.Say("Game Paused");
+            UIManager.Instance.ShowScreen("Pause");
+            return;
         }
     }
     

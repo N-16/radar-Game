@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SensitivityMenu : MonoBehaviour{
+    [SerializeField] Slider slider;
+
+    void Awake(){
+        slider.value = PlayerPrefs.GetFloat("Sensitivity", 4f);
+    }
     public void OnSensiChange(Slider slider){
         PlayerPrefs.SetFloat("Sensitivity", slider.value);
     }

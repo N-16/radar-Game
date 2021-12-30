@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour{
     }
 
     public void OnInstructionButton(){
-        UAP_AccessibilityManager.Say("Hear the detection notification sound, and accordingly move the mouse horizontally to aim and shoot missle towards submarines. Press P or escape to pause the game.");
+        UAP_AccessibilityManager.Say("Hear the detection notification sound after the radar pulse, and accordingly move the mouse horizontally to aim and press left click to shoot missle towards submarines. The later the notification sound is played after radar pulse, farther away the submarine is. If three submarines passes without being killed, the game ends. Total submarines destroyed will be the points you score. While in game press escape to pause it. Please use Headsets or a sound system with good stereo for better experience.");
     }
 
     public void OnPlayButton(){

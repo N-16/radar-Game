@@ -18,6 +18,7 @@ public class SceneLoader : MonoBehaviour{
     }
     void Awake(){
         _instance = this;
+        Debug.unityLogger.logEnabled = false;
     }
     void Start(){
         AddScene(SceneType.UIScene, () => {

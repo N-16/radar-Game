@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radarTransform: {fileID: 1860443432}
-  sensitivityMultiplier: 1000
+  sensitivityMultiplier: 10
 --- !u!4 &1860443432
 Transform:
   m_ObjectHideFlags: 0

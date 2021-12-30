@@ -97,3 +97,6 @@ MonoBehaviour:
   ignoreRaycast:
     serializedVersion: 2
     m_Bits: 128
+  submarineLayer:
+    serializedVersion: 2
+    m_Bits: 64
